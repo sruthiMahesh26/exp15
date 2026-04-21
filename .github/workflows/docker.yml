@@ -1,0 +1,22 @@
+name: Docker Build
+
+on:
+  push:
+    branches:
+      - main   # ✅ runs on every push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # ✅ Install Docker (already available, but we verify)
+      - name: Check Docker version
+        run: docker --version
+
+      # ✅ Build Docker image
+      - name: Build Docker Image
+        run: docker build -t my-image:latest .
